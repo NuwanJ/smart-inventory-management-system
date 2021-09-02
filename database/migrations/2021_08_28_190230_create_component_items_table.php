@@ -25,7 +25,7 @@ class CreateComponentItemsTable extends Migration
             $table->text("specifications")->nullable();
             $table->text("description")->nullable();
             $table->text("instructions")->nullable();
-            
+
 
             $table->boolean("isAvailable")->nullable();;
             $table->boolean("isElectrical")->nullable();;
@@ -43,9 +43,9 @@ class CreateComponentItemsTable extends Migration
                 ->references('id')
                 ->onDelete('cascade')
                 ->on('component_types');
-                
+
         });
-        
+
     }
 
     /**

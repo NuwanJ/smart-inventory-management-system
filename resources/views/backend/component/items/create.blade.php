@@ -128,7 +128,7 @@
                         @enderror
                     </div>
                 </div>
-                
+
                 <!-- Price -->
                 <div class="form-group row">
                     {!! Form::label('price', 'Price (LKR)', ['class' => 'col-md-2 col-form-label']) !!}
@@ -141,8 +141,12 @@
                     </div>
                 </div>
 
+<<<<<<< HEAD
 
                 <!-- isAvailable -->
+=======
+                <!-- isavailable -->
+>>>>>>> 464a6275566312221f3cb4834e3370c213bdf367
                 <div class="form-group row">
                     {!! Form::label('Available?', '', ['class' => 'col-md-2 col-form-label']) !!}
 
@@ -156,9 +160,15 @@
 
                 <div class="form-group row">
                     <!-- Is Electrical -->
+<<<<<<< HEAD
                     {!! Form::label('isElectrical', 'Electrical?', ['class' => 'col-md-2 form-check-label']) !!}
 
                     <div class="col-md-4 d-flex align-items-center">
+=======
+                    {!! Form::label('isElectrical', 'Electrical Item', ['class' => 'col-md-2 form-check-label']) !!}
+
+                    <div class="col-md-4 form-check">
+>>>>>>> 464a6275566312221f3cb4834e3370c213bdf367
                         {!! Form::checkbox('isElectrical', '1', ['class'=>'form-check-input']) !!}
                         @error('isElectrical')
                         <strong>{{ $message }}</strong>
@@ -176,14 +186,23 @@
                     </div>
                 </div>
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 464a6275566312221f3cb4834e3370c213bdf367
                 <!-- Thumbnail Image -->
                 <div class="form-group row">
                     {!! Form::label('thumb', 'Thumbnail', ['class' => 'col-md-2 col-form-label']) !!}
 
                     <div class="col-md-10 ">
+<<<<<<< HEAD
                         {!! Form::file('thumb', ["accept"=>".jpeg,.png,.jpg,.gif,.svg"]);  !!} (Max: 2MB, use square
                         image)
 
+=======
+                        {!! Form::file('thumb', ["accept"=>".jpeg,.png,.jpg,.gif,.svg"]);  !!} (Max: 2MB, use square image)
+>>>>>>> 464a6275566312221f3cb4834e3370c213bdf367
                         @error('thumb')
                         <strong>{{ $message }}</strong>
                         @enderror
