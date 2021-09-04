@@ -58,7 +58,11 @@
                     @enderror
                 </div>
             </div>
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> 3f1b9a02743530892d5f90ca693bbb22f0001921
             <!-- Description -->
             <div class="form-group row">
                 {!! Form::label('description', 'Description*', ['class' => 'col-md-2 col-form-label']) !!}
