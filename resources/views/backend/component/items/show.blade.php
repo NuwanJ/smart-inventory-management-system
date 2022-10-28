@@ -88,18 +88,12 @@
                     </tr>
 
                     <tr>
-                        <td>Size</td>
-                        <td>{{ $componentItem->size }}
-                        </td>
-                    </tr>
-
-                    <tr>
                         <td>Description</td>
                         <td>{!! str_replace("\n", "<br>", $componentItem->description) !!}</td>
                     </tr>
                     <tr>
-                        <td>Usage Instructions</td>
-                        <td>{!! str_replace("\n", "<br>", $componentItem->instructions) !!}</td>
+                        <td>Datasheet</td>
+                        <td>{{ $componentItem->datasheet }}</td>
                     </tr>
                     <tr>
                         {{-- !have to be changed --}}

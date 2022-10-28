@@ -13,14 +13,16 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use Torann\GeoIP\Location;
 
-class ComponentItemController extends Controller {
+class ComponentItemController extends Controller
+{
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
 
-    public function index() {
+    public function index()
+    {
         //$components = ComponentItem::paginate(16);
         return view("backend.component.items.index");
     }
@@ -30,7 +32,8 @@ class ComponentItemController extends Controller {
      *
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function create() {
+    public function create()
+    {
         $types = ComponentType::pluck('title', 'id');
         $locations = Locations::pluck('location', 'id');
         return view('backend.component.items.create', compact('types', 'locations'));
@@ -42,7 +45,8 @@ class ComponentItemController extends Controller {
      * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\RedirectResponse|void
      */
-    public function store(Request $request) {
+    public function store(Request $request)
+    {
         $data = request()->validate([
             'title' => 'string|required',
             'brand' => 'string|nullable',
@@ -51,14 +55,10 @@ class ComponentItemController extends Controller {
 
             'specifications' => 'string|nullable',
             'description' => 'string|nullable',
-            'instructions' => 'string|nullable',
+            'datasheet' => 'string|nullable',
 
-            'isAvailable' => 'nullable',
-            'isElectrical' => 'nullable',
-            'powerRating' => 'numeric|nullable',
             'quantity' => 'numeric|nullable',
             'price' => 'numeric|nullable',
-            'size' => 'string|nullable',   // [small, medium, large]
 
             'thumb' => 'image|nullable|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
@@ -88,7 +88,8 @@ class ComponentItemController extends Controller {
      * @param \App\Models\ComponentItem $componentItem
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function show(ComponentItem $componentItem) {
+    public function show(ComponentItem $componentItem)
+    {
         $locationCount = $this->getNumberOfLocationsForItem($componentItem);
 
         $locations_array = array();
@@ -104,7 +105,8 @@ class ComponentItemController extends Controller {
      * @param \App\Models\ComponentItem $componentItem
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function edit(ComponentItem $componentItem) {
+    public function edit(ComponentItem $componentItem)
+    {
         $types = ComponentType::pluck('title', 'id');
         //$this_item_location = ItemLocations::where('item_id', $componentItem->inventoryCode())->get()[0]['location_id'];
         ////        dd($this_item_location);
@@ -112,7 +114,8 @@ class ComponentItemController extends Controller {
         return view('backend.component.items.edit', compact('types', 'componentItem'));
     }
 
-    public function editLocation(ComponentItem $componentItem) {
+    public function editLocation(ComponentItem $componentItem)
+    {
         $locations = Locations::all()->where('parent_location', 1)->all();
 
         return view('backend.component.items.edit-location', compact('componentItem', 'locations'));
@@ -125,7 +128,8 @@ class ComponentItemController extends Controller {
      * @param \App\Models\ComponentItem $componentItem
      * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, ComponentItem $componentItem) {
+    public function update(Request $request, ComponentItem $componentItem)
+    {
         $data = request()->validate([
             'title' => 'string|required',
             'brand' => 'string|nullable',
@@ -134,14 +138,10 @@ class ComponentItemController extends Controller {
 
             'specifications' => 'string|nullable',
             'description' => 'string|nullable',
-            'instructions' => 'string|nullable',
+            'datasheet' => 'string|nullable',
 
-            'isAvailable' => 'boolean|nullable',
-            'isElectrical' => 'boolean|nullable',
-            'powerRating' => 'numeric|nullable',
             'quantity' => 'numeric|nullable',
             'price' => 'numeric|nullable',
-            'size' => 'string|nullable',   // [small, medium, large]
 
             'thumb' => 'image|nullable|mimes:jpeg,png,jpg,gif,svg|max:2048'
         ]);
@@ -169,7 +169,8 @@ class ComponentItemController extends Controller {
      * @param \App\Models\ComponentItem $componentItem
      * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function delete(ComponentItem $componentItem) {
+    public function delete(ComponentItem $componentItem)
+    {
         return view('backend.component.items.delete', compact('componentItem'));
     }
 
@@ -180,7 +181,8 @@ class ComponentItemController extends Controller {
      * @param \App\Models\ComponentItem $componentItem
      * @return \Illuminate\Http\RedirectResponse|null
      */
-    public function destroy(ComponentItem $componentItem) {
+    public function destroy(ComponentItem $componentItem)
+    {
         try {
             // Delete the thumbnail form the file system
             $this->deleteThumb($componentItem->thumbURL());
@@ -196,7 +198,8 @@ class ComponentItemController extends Controller {
         }
     }
 
-    private function deleteThumb($currentURL) {
+    private function deleteThumb($currentURL)
+    {
         if ($currentURL != null) {
             $oldImage = public_path($currentURL);
             if (File::exists($oldImage)) unlink($oldImage);
@@ -204,7 +207,8 @@ class ComponentItemController extends Controller {
     }
 
     // Private function to handle thumb images
-    private function uploadThumb($currentURL, $newImage, $folder) {
+    private function uploadThumb($currentURL, $newImage, $folder)
+    {
         // Delete the existing image
         $this->deleteThumb($currentURL);
 
