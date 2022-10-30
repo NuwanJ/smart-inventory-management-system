@@ -61,10 +61,10 @@
             
             <!-- Description -->
             <div class="form-group row">
-                {!! Form::label('description', 'Description*', ['class' => 'col-md-2 col-form-label']) !!}
+                {!! Form::label('description', 'Description', ['class' => 'col-md-2 col-form-label']) !!}
 
                 <div class="col-md-10">
-                    {!! Form::textarea('description', '', ['class'=>'form-control', 'rows'=>3, 'required'=>true ]) !!}
+                    {!! Form::textarea('description', '', ['class'=>'form-control', 'rows'=>3, 'required'=>false ]) !!}
                 </div>
 
                 @error('description')

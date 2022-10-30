@@ -93,39 +93,7 @@
                     </tr>
                     <tr>
                         <td>Datasheet</td>
-                        <td>{{ $componentItem->datasheet }}</td>
-                    </tr>
-                    <tr>
-                        {{-- !have to be changed --}}
-                        <td>Is It Available ?</td>
-                        <td>
-                            @if($componentItem->isAvailable=='1')
-                                <span>YES</span>
-                            @else
-                                <span class="text-danger">NO</span>
-                            @endif
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>Is It Electrical? ?</td>
-                        <td>
-                            @if($componentItem->isElectrical=='1')
-                                <span>YES</span>
-                            @else
-                                <span class="text-danger">NO</span>
-                            @endif
-                        </td>
-                    </tr>
-
-                    <tr>
-                        <td>Power Rating</td>
-                        <td>
-                            @if( $componentItem->powerRating != null )
-                                {{ $componentItem->powerRating." W"}}
-                            @else
-                                <span>[Not Available]</span>
-                            @endif
-                        </td>
+                        <td><a href="{{ $componentItem->datasheet }}">{{ $componentItem->datasheet }}</a></td>
                     </tr>
 
                     <tr>

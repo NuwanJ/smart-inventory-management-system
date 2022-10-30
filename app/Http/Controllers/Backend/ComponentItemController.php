@@ -34,7 +34,7 @@ class ComponentItemController extends Controller
      */
     public function create()
     {
-        $types = ComponentType::pluck('title', 'id');
+        $types = ComponentType::getFullTypeList();
         $locations = Locations::pluck('location', 'id');
         return view('backend.component.items.create', compact('types', 'locations'));
     }
@@ -55,7 +55,7 @@ class ComponentItemController extends Controller
 
             'specifications' => 'string|nullable',
             'description' => 'string|nullable',
-            'datasheet' => 'string|nullable',
+            'datasheet' => 'url|nullable',
 
             'quantity' => 'numeric|nullable',
             'price' => 'numeric|nullable',
@@ -69,11 +69,6 @@ class ComponentItemController extends Controller
             }
 
             $type = new ComponentItem($data);
-
-            // Update checkbox condition
-            $type->isAvailable = ($request->isAvailable != null);
-            $type->isElectrical = ($request->isElectrical != null);
-
             $type->save();
 
             return redirect()->route('admin.component.items.edit.location', $type)->with('Success', 'Component was created !');
@@ -107,10 +102,7 @@ class ComponentItemController extends Controller
      */
     public function edit(ComponentItem $componentItem)
     {
-        $types = ComponentType::pluck('title', 'id');
-        //$this_item_location = ItemLocations::where('item_id', $componentItem->inventoryCode())->get()[0]['location_id'];
-        ////        dd($this_item_location);
-        //$locations = Locations::pluck('location', 'id');
+        $types = ComponentType::getFullTypeList();
         return view('backend.component.items.edit', compact('types', 'componentItem'));
     }
 
@@ -138,7 +130,7 @@ class ComponentItemController extends Controller
 
             'specifications' => 'string|nullable',
             'description' => 'string|nullable',
-            'datasheet' => 'string|nullable',
+            'datasheet' => 'url|nullable',
 
             'quantity' => 'numeric|nullable',
             'price' => 'numeric|nullable',
@@ -150,10 +142,6 @@ class ComponentItemController extends Controller
             if ($request->thumb != null) {
                 $data['thumb'] = $this->uploadThumb($componentItem->thumbURL(), $request->thumb, "component_items");
             }
-
-            // Update checkbox condition
-            $componentItem['isAvailable'] = isset($request->isAvailable) ? 1 : 0;
-            $componentItem['isElectrical'] = isset($request->isElectrical) ? 1 : 0;
 
             $componentItem->update($data);
 
