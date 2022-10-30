@@ -52,7 +52,7 @@
                   <div class="form-group row">
                     {!! Form::label('parent_id', 'Parent Category', ['class' => 'col-md-2 col-form-label']) !!}
 
-                    <div class="col-md-4">
+                    <div class="col-md-10">
                         {!! Form::select('parent_id', $types, $componentType->parent_id, ['class'=>'form-control', 'required'=>false, 'placeholder' => '']) !!}
                         @error('parent_id')
                         <strong>{{ $message }}</strong>

@@ -38,7 +38,7 @@
                 <div class="form-group row">
                     {!! Form::label('component_type_id', 'Category*', ['class' => 'col-md-2 col-form-label']) !!}
 
-                    <div class="col-md-4">
+                    <div class="col-md-10">
                         {!! Form::select('component_type_id', $types, $componentItem->component_type_id, ['class'=>'form-control', 'required'=>true, 'placeholder' => '']) !!}
                         @error('component_type_id')
                         <strong>{{ $message }}</strong>
