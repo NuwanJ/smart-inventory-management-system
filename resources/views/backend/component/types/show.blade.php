@@ -41,6 +41,11 @@
                         <td>
                             @if( $componentType->parent() !== null)
                                 @if( $componentType->parent()->parent() !== null)
+                                    @if( $componentType->parent()->parent()->parent() !== null)
+                                        <a href="{{ route('admin.component.types.show', $componentType->parent()->parent()->parent()->id) }}">
+                                            {{ $componentType->parent()->parent()->parent()->title }}
+                                        </a>{{ ' > ' }}
+                                    @endif
                                     <a href="{{ route('admin.component.types.show', $componentType->parent()->parent()->id) }}">
                                         {{ $componentType->parent()->parent()->title }}
                                     </a>{{ ' > ' }}
