@@ -31,9 +31,8 @@ class ComponentItemFactory extends Factory
             'description' => $this->faker->text(),
             'datasheet' => $this->faker->url(),
             'price' => rand(100, 1000),
-            'size' => $this->faker->randomElement(['very small', 'small',  'medium', 'regular', 'large', 'very large']),
             'thumb' => NULL,
-            'component_type_id' => $this->faker->randomElement(['11', '12'])
+            'component_type_id' => $this->faker->randomElement(['10', '11', '12', '13', '14', '15'])
 
         ];
     }
